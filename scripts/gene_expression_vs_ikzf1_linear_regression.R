@@ -78,7 +78,7 @@ library("edgeR")
 
 # Enter gene counts into a DGEList object with edgeR
 # Remove birds with mutated IKZF1 from df
-cohort <- c(1:11, 13:19, 22:25, 32)
+cohort <- c(1:11, 13:19, 22:25, 28, 32)
 group <- factor(group[cohort])
 all.data <- all.data[,cohort]
 
@@ -175,6 +175,9 @@ r_df <- as.vector(dge$counts[dge$genes$genes=="ENSGALG00000001826", ])
 r_df <- dge$counts[dge$genes$genes=="ENSGALG00000013565", ]
 # IKZF1
 e_df <- as.vector(dge$counts[dge$genes$genes=="ENSGALG00000013086", ])
+# Write a table for MDV comparisons
+write.table(dge$counts[dge$genes$genes=="ENSGALG00000013086", c(9:24)], file = "/Users/Alec/Documents/Bioinformatics/MDV_Project/gene_expression_vs_ikzf1/data/IKZF1_counts_vs_mdv.txt", )
+
 
 # Create a dataframe with these two gene's counts
 lin_reg = data.frame(
